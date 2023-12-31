@@ -12,3 +12,11 @@ services:
       - type: bind
         source: $HOME/ssl
         target: /ssl
+    networks:
+      - ssserver-network
+networks:
+  ssserver-network:
+   enable_ipv6: true
+   ipam:
+     config:
+      - subnet: fd32:1816:5c7c::/64
