@@ -4,5 +4,5 @@ The repository contains docker and docker compose files of shadowsocks-rust with
 
 ## Bindings
 
-- /etc/shadowsocks-rust/config.json => /etc/shadowsocks-rust/config.json
+- /etc/shadowsocks-rust/config.docker.json => /etc/shadowsocks-rust/config.json
 - $HOME/ssl => /ssl
