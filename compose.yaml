@@ -7,7 +7,7 @@ services:
       - "20:3"
     volumes:
       - type: bind
-        source: /etc/shadowsocks-rust/config.json
+        source: /etc/shadowsocks-rust/config.docker.json
         target: /etc/shadowsocks-rust/config.json
       - type: bind
         source: $HOME/ssl
