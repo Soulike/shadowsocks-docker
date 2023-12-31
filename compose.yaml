@@ -1,6 +1,7 @@
 services:
     ssserver:
         image: 'soulike/shadowsocks-docker:latest'
+        restart: always
         ports:
             - '2376:3000'
             - '989:3001'
