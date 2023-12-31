@@ -1,0 +1,13 @@
+services:
+  ssserver:
+    build: .
+    ports:
+      - "1:2376"
+      - "2:989"
+    volumes:
+      - type: bind
+        source: /etc/shadowsocks-rust/config.json
+        target: /etc/shadowsocks-rust/config.json
+      - type: bind
+        source: $HOME/ssl
+        target: /ssl
