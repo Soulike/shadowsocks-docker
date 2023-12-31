@@ -11,7 +11,7 @@ WORKDIR /shadowsocks-rust
 RUN cargo build --release
 
 FROM --platform=linux/amd64 alpine:latest
-COPY --from=V2RAY-PLUGIN-BUILD /v2ray-plugin/v2ray-plugin /shadowsocks/v2ray-plugin
-COPY --from=SS-BUILD /shadowsocks-rust/target/release/ssserver /shadowsocks/ssserver
+COPY --from=V2RAY-PLUGIN-BUILD --chmod=777 /v2ray-plugin/v2ray-plugin /shadowsocks/v2ray-plugin
+COPY --from=SS-BUILD --chmod=777 /shadowsocks-rust/target/release/ssserver /shadowsocks/ssserver
 ENV PATH=/shadowsocks:$PATH
 CMD [ "ssserver", "-c", "/etc/shadowsocks-rust/config.json" ]
