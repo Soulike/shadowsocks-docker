@@ -2,9 +2,9 @@ services:
   ssserver:
     image: "soulike/shadowsocks-docker:latest"
     ports:
-      - "2376:1"
-      - "989:2"
-      - "20:3"
+      - "2376:3000"
+      - "989:3001"
+      - "20:3002"
     volumes:
       - type: bind
         source: /etc/shadowsocks-rust/config.docker.json

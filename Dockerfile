@@ -7,4 +7,3 @@ RUN go build
 
 FROM --platform=linux/amd64 ghcr.io/shadowsocks/ssserver-rust:latest
 COPY --from=V2RAY-PLUGIN-BUILD /v2ray-plugin/v2ray-plugin /v2ray-plugin
-CMD ["ssserver", "-c /etc/shadowsocks-rust/config.json"]
