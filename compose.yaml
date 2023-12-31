@@ -10,7 +10,7 @@ services:
         source: /etc/shadowsocks-rust/config.docker.json
         target: /etc/shadowsocks-rust/config.json
       - type: bind
-        source: $HOME/ssl
+        source: /home/soulike/ssl
         target: /ssl
     networks:
       - ssserver-network
