@@ -4,14 +4,7 @@ RUN apt install git && \
 WORKDIR /v2ray-plugin
 RUN go build 
 
-FROM --platform=linux/amd64 rust:latest AS SS-BUILD
-RUN apt install git && \
-    git clone https://github.com/shadowsocks/shadowsocks-rust.git /shadowsocks-rust
-WORKDIR /shadowsocks-rust
-RUN cargo build --release
-
-FROM --platform=linux/amd64 alpine:latest
-COPY --from=V2RAY-PLUGIN-BUILD --chmod=777 /v2ray-plugin/v2ray-plugin /shadowsocks/v2ray-plugin
-COPY --from=SS-BUILD --chmod=777 /shadowsocks-rust/target/release/ssserver /shadowsocks/ssserver
-ENV PATH=/shadowsocks:$PATH
-CMD [ "ssserver", "-c", "/etc/shadowsocks-rust/config.json" ]
+FROM ghcr.io/shadowsocks/ssserver-rust:latest
+COPY --from=V2RAY-PLUGIN-BUILD --chmod=777 /v2ray-plugin/v2ray-plugin /usr/bin/v2ray-plugin
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
+CMD [ "ssserver", "--log-without-time", "-c", "/etc/shadowsocks-rust/config.json" ]
